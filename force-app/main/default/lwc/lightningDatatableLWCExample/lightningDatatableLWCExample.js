@@ -1,6 +1,5 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getAccountList from '@salesforce/apex/AccountHelper.getAccountList';
-import searchAcc from '@salesforce/apex/AccountHelper.searchAcc';
 export default class LightningDatatableLWCExample extends LightningElement {
     @track columns = [{
         label: 'Account name',
@@ -42,7 +41,8 @@ export default class LightningDatatableLWCExample extends LightningElement {
 
     @track error;
     @track accList;
-    @wire(getAccountList)
+    @track searchKey = '';
+    @wire(getAccountList, { key: '$searchKey' })
     wiredAccounts({
         errors,
         data
@@ -54,14 +54,7 @@ export default class LightningDatatableLWCExample extends LightningElement {
         }
     }
 
-
     search(event) {
-        var key = event.target.value;
-        searchAcc({ key }).then(result => {
-            this.accList = result;   
-        })
-            .catch(error => {
-                console.log('error ' + error);
-            })
+        this.searchKey = event.target.value;
     }
 }
