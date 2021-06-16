@@ -1,12 +1,8 @@
 <template>
     <h2> Account Datatable</h2>
-    <div class="slds-p-around_small">
-        <lightning-input type="text" name="search" label="Search the Account" onchange={search}
-            placeholder="search">
-        </lightning-input>
-    </div>
-    <template if:true={accList}>
 
+    <template if:true={accList}>
+        <c-child onsearchaccount={handlechange}></c-child>
 
         <lightning-datatable data={accList} columns={columns} key-field="Id" hide-checkbox-column="false">
         </lightning-datatable>

@@ -54,7 +54,12 @@ export default class LightningDatatableLWCExample extends LightningElement {
         }
     }
 
-    search(event) {
-        this.searchKey = event.target.value;
+
+    handlechange(event) {
+        this.searchKey = event.detail;
+
     }
+
+
+
 }
