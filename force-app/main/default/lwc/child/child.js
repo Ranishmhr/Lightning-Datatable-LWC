@@ -1,11 +1,11 @@
-import { api, LightningElement } from 'lwc';
+import { api, LightningElement, track } from 'lwc';
 
 export default class Child extends LightningElement {
-    @api SKey;
+
     search(event) {
-        this.Skey = event.target.value;
+
         const searchEvent = new CustomEvent('searchaccount', {
-            detail: this.Skey
+            detail: event.target.value
         });
         this.dispatchEvent(searchEvent);
 
